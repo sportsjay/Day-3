@@ -43,7 +43,7 @@ const NewList = (props) => {
 
   return (
     <Box className={classes.listItem}>
-      <FormControlLabel control={<Checkbox />} />
+      <FormControlLabel control={<Checkbox color="primary" />} />
       <Typography className={classes.listText}>{text}</Typography>
     </Box>
   );

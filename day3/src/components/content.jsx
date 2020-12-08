@@ -133,7 +133,9 @@ export default function Content() {
           >
             Submit
           </Button>
+          <h3>Hope you are happy today!</h3>
           <ProgressBar width={300} percent={happiness} />
+          <h2>{happiness}%</h2>
         </Container>
       </Card>
     </Box>
