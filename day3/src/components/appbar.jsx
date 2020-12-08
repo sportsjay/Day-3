@@ -1,29 +1,56 @@
-import React from "react";
+import React, { Fragment } from "react";
 
-import {
-  AppBar,
-  Container,
-  Toolbar,
-  Typography,
-  Box,
-  makeStyles,
-} from "@material-ui/core";
+import { AppBar, Container, Toolbar, Box, makeStyles } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  appBar: {
+    backgroundColor: "#004987",
+  },
   toolbar: {
     display: "flex",
-    paddingLeft: theme.spacing(10),
-    paddingRight: theme.spacing(10),
     justifyContent: "space-between",
+    [theme.breakpoints.up("md")]: {
+      paddingLeft: theme.spacing(10),
+      paddingRight: theme.spacing(10),
+    },
   },
   profileBox: {
     display: "flex",
     justifyContent: "space-around",
     padding: "auto",
-    width: "300px",
-    minWidth: "200px",
+    [theme.breakpoints.up("md")]: {
+      width: "300px",
+      minWidth: "200px",
+    },
+    [theme.breakpoints.up("sm")]: {
+      width: "100px",
+    },
+  },
+  main: {
+    display: "flex",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
+  },
+  todo: {
+    margin: 20,
+    [theme.breakpoints.up("md")]: {
+      width: "40%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      minWidth: "100px",
+    },
+  },
+  content: {
+    [theme.breakpoints.up("md")]: {
+      width: "60%",
+      padding: "auto",
+    },
+    [theme.breakpoints.down("sm")]: {
+      minWidth: "200px",
+      padding: "auto",
+    },
   },
 }));
 
@@ -31,30 +58,34 @@ export const TopAppBar = (props) => {
   const classes = useStyles();
 
   const elements = {
-    'main': Array.isArray(props.todoList) ? props.todoList : [],
-    'content': Array.isArray(props.content) ? props.todoList : [],
-  }
+    todo: Array(props.todoList),
+    content: Array(props.content),
+  };
 
   return (
     <div className={classes.root}>
-      <AppBar>
+      <AppBar className={classes.appBar} position="relative">
         <Toolbar className={classes.toolbar}>
           <Box>
-            <Typography>
-              <h1>My Name</h1>
-            </Typography>
+            <h1>My Name</h1>
           </Box>
           <Box className={classes.profileBox}>
-            <Typography>
-              <h1>Todo</h1>
-            </Typography>
+            <h1>Todo</h1>
             <PersonIcon style={{ margin: "auto", width: 50, height: 50 }} />
           </Box>
         </Toolbar>
       </AppBar>
-      <div>
-        <Container></Container>
-        <Container></Container>
+      <div className={classes.main}>
+        <Container className={classes.todo}>
+          {elements["todo"].map((components) => (
+            <Fragment key={Math.random() * 100}>{components}</Fragment>
+          ))}
+        </Container>
+        <Container className={classes.content}>
+          {elements["content"].map((components) => (
+            <Fragment key={Math.random() * 100}>{components}</Fragment>
+          ))}
+        </Container>
       </div>
     </div>
   );
