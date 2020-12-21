@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const TopAppBar = (props) => {
+export const BodyContent = (props) => {
   const classes = useStyles();
 
   const elements = {
@@ -63,18 +63,17 @@ export const TopAppBar = (props) => {
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar className={classes.appBar} position="relative">
-        <Toolbar className={classes.toolbar}>
-          <Box>
-            <h1>My Name</h1>
-          </Box>
-          <Box className={classes.profileBox}>
-            <h1>Todo</h1>
-            <PersonIcon style={{ margin: "auto", width: 50, height: 50 }} />
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </div>
+      <div className={classes.main}>
+        <Container className={classes.todo}>
+          {elements["todo"].map((components) => (
+            <Fragment key={Math.random() * 100}>{components}</Fragment>
+          ))}
+        </Container>
+        <Container className={classes.content}>
+          {elements["content"].map((components) => (
+            <Fragment key={Math.random() * 100}>{components}</Fragment>
+          ))}
+        </Container>
+      </div>
   );
 };

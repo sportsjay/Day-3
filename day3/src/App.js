@@ -1,9 +1,10 @@
 import React from 'react';
 import Todo from './pages/todo';
+import Todos from './pages/todos';
 
 function App() {
   return (
-    <Todo />
+      <Todos style={{width: "100%", height: "100%"}}/>
   );
 }
 

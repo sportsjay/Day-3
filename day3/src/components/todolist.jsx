@@ -49,7 +49,7 @@ const NewList = (props) => {
   );
 };
 
-export default function TodoList() {
+export default function TodoList(props) {
   const [list, setList] = useState([]);
   const [text, setText] = useState("");
 
@@ -58,7 +58,7 @@ export default function TodoList() {
   return (
     <Container className={classes.root}>
       <h2>What are you doing today?</h2>
-      {list.map((item) => (
+      {props.listOfTodos.map((item) => (
         <Fragment>
           <NewList key={Math.random() * 1000} text={item} />
           <Divider className={classes.divider} />
@@ -76,9 +76,8 @@ export default function TodoList() {
         <IconButton
           onClick={() => {
             if (text.length > 0) {
-              list.push(text);
-              setList(list);
-              setText("");
+              props.addNewList(text);
+              //setText("");
             } else {
               alert("What are you going to do today?");
             }
